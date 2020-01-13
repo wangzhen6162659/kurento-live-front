@@ -1,5 +1,5 @@
 const webpack = require('webpack')
-var url = window.location.hostname
+var url = "wzroom.cn"
 module.exports = {
   configureWebpack: {
     plugins: [
