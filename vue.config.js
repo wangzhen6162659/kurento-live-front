@@ -10,7 +10,7 @@ module.exports = {
       })
     ]
   },
-  publicPath: '/front/',
+  publicPath: '/kurento-live-front/',
   assetsDir: 'assets',
   devServer: {
     proxy: {
