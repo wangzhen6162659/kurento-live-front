@@ -25,8 +25,8 @@ http.interceptors.response.use(response => {
   if (response.data.code === 403) {
     return router.push('/login')
   }
-  Message.error(response.msg || '服务出错')
-  throw new Error(response.msg || '服务出错')
+  Message.error(response.data.msg || '服务出错')
+  throw new Error(response.data.msg || '服务出错')
 })
 
 export default http

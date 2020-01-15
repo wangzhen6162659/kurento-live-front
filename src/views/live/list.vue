@@ -9,7 +9,8 @@
       style="transition: all .3s"
     >
       <img :src="item.avatar" alt="" class="w-64 h-48">
-      <h3 class="mt-2 truncate text-center">主播: {{item.userName}}</h3>
+      <h3 class="mt-2 truncate text-center" style="max-width: 256px;">{{item.live.desc || "这家伙很懒，没有什么介绍"}}</h3>
+      <h3 class="mt-2 truncate text-center">主播: {{item.user.nickname}}</h3>
       <i class="el-icon-caret-right text-6xl absolute top-0 left-0 mt-20 ml-24 hover:shadow rounded"></i>
     </router-link>
   </div>

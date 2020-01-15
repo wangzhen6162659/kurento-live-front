@@ -52,6 +52,7 @@ window.setRtcUtils = function () {
         RtcUtils.dispose();
         break;
       case 'interactionResponse':
+        parsedMessage.user = JSON.parse(parsedMessage.user)
         RtcUtils.notice.emit('interactionAdd', parsedMessage);
         break;
       default:
@@ -238,6 +239,7 @@ window.setRtcUtils = function () {
 
     message.liveId = liveId;
     message.token = localStorage.getItem("token");
+    message.userInfo = localStorage.getItem("userInfo");
     var jsonMessage = JSON.stringify(message);
     console.log('Sending message: ' + jsonMessage);
     RtcUtils.ws.send(jsonMessage);

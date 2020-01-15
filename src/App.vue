@@ -62,7 +62,6 @@ export default {
   },
   mounted() {
     window.setRtcUtils();
-    localStorage.setItem("token", parseInt(Math.random()*100))
   }
 }
 </script>

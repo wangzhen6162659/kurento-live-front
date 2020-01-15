@@ -7,7 +7,7 @@
       ></video>
       <div class="living-controls-wrapper mt-2 flex w-full items-center">
         <span class="text-white mr-auto">状态: {{statusText}}</span>
-        <el-input v-model="liveId" class="live-input" placeholder="请输入直播号" size="mini"></el-input>
+        <!-- <el-input v-model="liveDesc" class="live-input" placeholder="请输入直播号" size="mini"></el-input> -->
         <el-button type="primary" @click="setVideo">播放影片</el-button>
         <el-button type="primary" @click="start" v-if="status=='initial'">开始直播</el-button>
         <el-button type="danger" class="ml-3" @click="stop" v-else-if="status!='starting'">停止直播</el-button>
@@ -40,7 +40,7 @@
           </div>
           <div class="interaction-text-box"
                :key="message.id" v-if="message.type == 'interaction'">
-            <span class="interaction-text">{{message.user}}:</span>
+            <span class="interaction-text">{{message.user.nickname}}:</span>
             <span class="interaction-text">{{message.msg}}</span>
           </div>
         </template>
@@ -55,6 +55,7 @@
 
 <script>
 import Presentor from './presentor'
+import { getMyLive } from '@/api'
 let presentor = null
 
 export default {
@@ -63,7 +64,7 @@ export default {
     return {
       src: null, // 'http://vt1.doubanio.com/201903181816/4191665522bbfd3a842c307fd67f0b25/view/movie/M/402410829.mp4',
       status: 'initial',
-      liveId: '',
+      liveId: null,
       interactions: [
         // {
         //   user: 111,
@@ -114,7 +115,7 @@ export default {
     this.stop()
   },
   methods: {
-    start () {
+    async start () {
       // this.status = 'starting'
       // presentor = new Presentor(this.$refs.video)
       // console.log(presentor)
@@ -133,6 +134,14 @@ export default {
       //   this.messages.push(message)
       // })
       // presentor.start()
+      const { data } = await getMyLive()
+      if (data && data.id) {
+        this.liveId = data.id
+      }
+      if (!this.liveId) {
+        this.$message.error('您还未开通直播间');
+        return;
+      }
       RtcUtils.video = document.getElementById('video');
       RtcUtils.videoOutput = document.getElementById('video2');
       localStorage.setItem("liveId", this.liveId)
@@ -141,7 +150,6 @@ export default {
     setVideo(){
       var video = document.getElementById("video");
       if (!this.src){
-
         this.src = "@/assets/test.mp4"
       }
       video.play();

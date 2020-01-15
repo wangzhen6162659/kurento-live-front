@@ -35,7 +35,7 @@
           </div>
           <div class="interaction-text-box"
                :key="message.id" v-if="message.type == 'interaction'">
-            <span class="interaction-text">{{message.user}}:</span>
+            <span class="interaction-text">{{message.user.nickname}}:</span>
             <span class="interaction-text">{{message.msg}}</span>
           </div>
         </template>
