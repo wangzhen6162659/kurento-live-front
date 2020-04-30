@@ -10,7 +10,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "element-ui": "^2.6.1",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "kurento-browser-extensions": "0.0.2",
     "kurento-utils": "^6.9.0",
     "nprogress": "^0.2.0",
